@@ -12,9 +12,10 @@ public class Movement : MonoBehaviour
         rigidBody = this.GetComponent<Rigidbody>();
     }
     
-    void Update()
+    void FixedUpdate()
     {
-        
+        Vector3 movement = new Vector3(Input.GetAxis("JoystickHorizontal"), 0.0f, Input.GetAxis("JoystickVertical"));
+        Move(movement);
     }
     public void Move(Vector3 direction)
     {
