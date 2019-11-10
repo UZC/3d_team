@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
     Rigidbody rigidBody;
     public float speed;
-    public float rotationSpeed;
+    public float rotateSpeed;
     void Start()
     {
         rigidBody = this.GetComponent<Rigidbody>();
@@ -14,16 +14,36 @@ public class Movement : MonoBehaviour
     
     void FixedUpdate()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("JoystickHorizontal"), 0.0f, Input.GetAxis("JoystickVertical"));
+        Vector3 movement = new Vector3(Input.GetAxis("JoystickHorizontal1"), 0.0f, Input.GetAxis("JoystickVertical1"));
         Move(movement);
+        Rotate(rotateSpeed, movement);
+        if (Input.GetButtonDown("Xbut1"))
+        {
+            Debug.Log("X");
+        }
+        if (Input.GetButtonDown("Sqbut1"))
+        {
+            Debug.Log("S");
+        }
+        if (Input.GetButtonDown("Cbut1"))
+        {
+            Debug.Log("C");
+        }
+        if (Input.GetButtonDown("Tbut1"))
+        {
+            Debug.Log("T");
+        }
     }
     public void Move(Vector3 direction)
     {
         rigidBody.velocity = direction * speed;
     }
-
-    public void Rotate(Vector3 rotation)
+    public void Rotate(float speed, Vector3 movement)
     {
-        this.transform.Rotate(rotation * rotationSpeed);
+        if (movement != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), speed);
+        }
     }
+
 }
