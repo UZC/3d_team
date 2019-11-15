@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\vdmytrenkoFolder\EnemyDistance.cs" />
+    <Compile Include="Assets\Scripts\vdmytrenkoFolder\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\Movement.cs" />
     <Compile Include="Assets\Scripts\vpetrov\Health.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">

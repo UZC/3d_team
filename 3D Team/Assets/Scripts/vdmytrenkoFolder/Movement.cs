@@ -19,11 +19,11 @@ public class Movement : MonoBehaviour
         Rotate(rotateSpeed, movement);
         if (Input.GetButtonDown("Xbut1"))
         {
-            Debug.Log("X");
+            Debug.Log(this.GetComponent<EnemyDistance>().GetDistance());
         }
         if (Input.GetButtonDown("Sqbut1"))
         {
-            Debug.Log("S");
+            this.GetComponent<MeleeAttack>().DoAttack();
         }
         if (Input.GetButtonDown("Cbut1"))
         {
@@ -36,13 +36,14 @@ public class Movement : MonoBehaviour
     }
     public void Move(Vector3 direction)
     {
-        rigidBody.velocity = direction * speed;
+        //rigidBody.velocity = direction * speed;
+        transform.position += direction * speed * Time.deltaTime;
     }
     public void Rotate(float speed, Vector3 movement)
     {
         if (movement != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), speed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), speed * Time.deltaTime);
         }
     }
 
