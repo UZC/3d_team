@@ -6,38 +6,42 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 { 
         public Image healthBar;
-        public float currentHealth;
+        public decimal currentHealth;
+        public bool isDead;
         void Start()
         {
-            currentHealth = 1f;
+            currentHealth = 100;
+            isDead = false;
         }
 
         void Update()
         {
-        healthBar.fillAmount = currentHealth;
-        if (currentHealth > 1f)
-            {
-                currentHealth = 1f;
-            }
-        if (currentHealth < 0)
-            {
-                currentHealth = 0;
-            Death();
-            }
+        healthBar.fillAmount = (float)currentHealth/100;
+      
+        
         }
 
-        void Death()
+        public void OnDeath()
         {
-
+            isDead = true;
         }
-        public void TakeDamage(float damage)
+        public void TakeDamage(int damage)
         {
             currentHealth -= damage;
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+            OnDeath();
         }
+    }
 
-        public void TakeHeal(float heal)
+        public void TakeHeal(int heal)
         {
             currentHealth += heal;
+        if (currentHealth > 100)
+        {
+            currentHealth = 100;
         }
+    }
 }
 
