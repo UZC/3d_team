@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\Movement.cs" />
+    <Compile Include="Assets\Scripts\vpetrov\Health.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Vlad/Documents/GitHub/3d_team/3D Team/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
