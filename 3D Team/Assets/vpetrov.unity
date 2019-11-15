@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
-  currentHealth: 1
+  isDead: 0
 --- !u!1 &94779272
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,11 +464,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1988996904}
         m_MethodName: TakeDamage
-        m_Mode: 4
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 20
           m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 0
@@ -589,11 +589,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1988996904}
         m_MethodName: TakeHeal
-        m_Mode: 4
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 20
           m_FloatArgument: 0.2
           m_StringArgument: 
           m_BoolArgument: 0
@@ -955,7 +955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 76521756}
-  currentHealth: 0
+  isDead: 0
 --- !u!4 &1988996905
 Transform:
   m_ObjectHideFlags: 0
