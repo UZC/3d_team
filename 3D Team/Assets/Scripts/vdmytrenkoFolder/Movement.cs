@@ -7,29 +7,49 @@ public class Movement : MonoBehaviour
     Rigidbody rigidBody;
     public float speed;
     public float rotateSpeed;
+    public bool firstPlayer;
+    string horizontal, vertical, xbut, sbut, cbut, tbut;
     void Start()
     {
+        if (firstPlayer)
+        {
+            horizontal = "JoystickHorizontal1";
+            vertical = "JoystickVertical1";
+            xbut = "Xbut1";
+            sbut = "Sqbut1";
+            cbut = "Cbut1";
+            tbut = "Tbut1";
+        }
+        else
+        {
+            horizontal = "JoystickHorizontal2";
+            vertical = "JoystickVertical2";
+            xbut = "Xbut2";
+            sbut = "Sqbut2";
+            cbut = "Cbut2";
+            tbut = "Tbut2";
+        }
         rigidBody = this.GetComponent<Rigidbody>();
     }
     
     void FixedUpdate()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("JoystickHorizontal1"), 0.0f, Input.GetAxis("JoystickVertical1"));
+        Vector3 movement = new Vector3(Input.GetAxis(horizontal), 0.0f, Input.GetAxis(vertical));
         Move(movement);
         Rotate(rotateSpeed, movement);
-        if (Input.GetButtonDown("Xbut1"))
+        if (Input.GetButtonDown(xbut))
         {
             Debug.Log(this.GetComponent<EnemyDistance>().GetDistance());
         }
-        if (Input.GetButtonDown("Sqbut1"))
+        if (Input.GetButtonDown(sbut))
         {
             this.GetComponent<MeleeAttack>().DoAttack();
         }
-        if (Input.GetButtonDown("Cbut1"))
+        if (Input.GetButtonDown(cbut))
         {
             Debug.Log("C");
         }
-        if (Input.GetButtonDown("Tbut1"))
+        if (Input.GetButtonDown(tbut))
         {
             Debug.Log("T");
         }

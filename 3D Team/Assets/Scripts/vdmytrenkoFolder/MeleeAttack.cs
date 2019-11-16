@@ -23,7 +23,7 @@ public class MeleeAttack : MonoBehaviour
 
     public void DoAttack()
     {
-        if (this.GetComponent<EnemyDistance>().GetDistance() <= attackRange && isAbleToAttack)
+        if (this.GetComponent<EnemyDistance>().GetDistance() <= attackRange && isAbleToAttack && LookAtEnemy())
         {
             target.TakeDamage(damage);
             StartCoroutine(Cooldown());
@@ -35,5 +35,17 @@ public class MeleeAttack : MonoBehaviour
         isAbleToAttack = false;
         yield return new WaitForSeconds(attackCooldown);
         isAbleToAttack = true;
+    }
+    private bool LookAtEnemy()
+    {
+        RaycastHit hit;
+        Ray ray = new Ray(this.transform.position, this.transform.forward);
+
+        Physics.Raycast(ray, out hit);
+
+        if (hit.collider != null && (hit.collider.tag == "Player" || hit.collider.tag == "Player2"))
+            return true;
+        else return false;
+        
     }
 }
