@@ -536,11 +536,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 1832532599}
   player2: {fileID: 508317999}
-  speed: 1
   maxDistance: 15
   minDistance: 5
   maxY: 25
   minY: 8
+  startForRotateY: 14
+  maxAngle: 31
 --- !u!1 &1832532599
 GameObject:
   m_ObjectHideFlags: 0

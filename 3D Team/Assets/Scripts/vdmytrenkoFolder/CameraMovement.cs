@@ -8,33 +8,42 @@ public class CameraMovement : MonoBehaviour
     private GameObject player1;
     [SerializeField]
     private GameObject player2;
-    public float speed;
+    
 
     public float maxDistance, minDistance;
     public float maxY, minY;
+    public float startForRotateY;
+    public float maxAngle;
+
+    private Vector3 startCameraAngle;
     void Start()
     {
-
+        startCameraAngle = this.transform.eulerAngles;
+        Debug.Log(startCameraAngle.x + " " + startCameraAngle.y + " " + startCameraAngle.z);
     }
 
     
     void FixedUpdate()
     {
-        MoveCameraOnZ();
-        MoveCameraOnX();
+        float z = MoveCameraOnZ();
+        float x = MoveCameraOnX();
         MoveCameraOnY();
+        DistanceBetweenCenterAndCamera(x, z);
+        RotateCamera();
     }
 
-    private void MoveCameraOnX()
+    private float MoveCameraOnX()
     {
         float centrX = (player1.transform.position.x + player2.transform.position.x) / 2;
-        this.transform.position = new Vector3(centrX, this.transform.position.y, this.transform.position.z); 
+        this.transform.position = new Vector3(centrX, this.transform.position.y, this.transform.position.z);
+        return centrX;
     }
 
-    private void MoveCameraOnZ()
+    private float MoveCameraOnZ()
     {
         float centrZ = (player1.transform.position.z + player2.transform.position.z) / 2;
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, centrZ - 10);
+        return centrZ;
     }
     private void MoveCameraOnY()
     {
@@ -47,9 +56,26 @@ public class CameraMovement : MonoBehaviour
             float tempDistDiff = maxDistance - minDistance;
             float tempYdiff = maxY - minY;
             float ratio = tempYdiff / tempDistDiff;
-            coordY = distance * ratio - 0.5f;
+            coordY = (distance - minDistance) * ratio + minY; 
         }
         this.transform.position = new Vector3(this.transform.position.x, coordY, this.transform.position.z);
-        //Debug.Log(distance);
+    }
+    private void DistanceBetweenCenterAndCamera(float x, float z)
+    {
+        float distance = Vector3.Distance(new Vector3(x, 0, z), this.transform.position);
+    }
+    private void RotateCamera()
+    {
+        if (this.transform.position.y <= startForRotateY)
+        {
+            float tempForAngleDiff = startCameraAngle.x - maxAngle;
+            float tempForDifferentY = startForRotateY - minY;
+            float ratio = tempForAngleDiff / tempForDifferentY;
+
+            float cameraRotationX = ((this.transform.position.y - minY) * ratio) + maxAngle;
+            this.transform.eulerAngles = new Vector3(cameraRotationX, startCameraAngle.y, startCameraAngle.z);
+            
+            Debug.Log(cameraRotationX);
+        } else this.transform.eulerAngles = startCameraAngle;
     }
 }
