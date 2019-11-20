@@ -19,7 +19,6 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         startCameraAngle = this.transform.eulerAngles;
-        Debug.Log(startCameraAngle.x + " " + startCameraAngle.y + " " + startCameraAngle.z);
     }
 
     
@@ -75,7 +74,6 @@ public class CameraMovement : MonoBehaviour
             float cameraRotationX = ((this.transform.position.y - minY) * ratio) + maxAngle;
             this.transform.eulerAngles = new Vector3(cameraRotationX, startCameraAngle.y, startCameraAngle.z);
             
-            Debug.Log(cameraRotationX);
         } else this.transform.eulerAngles = startCameraAngle;
     }
 }
