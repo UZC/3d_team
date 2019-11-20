@@ -9,6 +9,8 @@ public class MeleeAttack : MonoBehaviour
     Health target;
     public float attackCooldown;
     bool isAbleToAttack;
+
+    public float beforeAttackTime;
     void Start()
     {
         target = this.GetComponent<EnemyDistance>().GetEnemy();
@@ -23,18 +25,24 @@ public class MeleeAttack : MonoBehaviour
 
     public void DoAttack()
     {
-        if (this.GetComponent<EnemyDistance>().GetDistance() <= attackRange && isAbleToAttack && LookAtEnemy())
+        if (isAbleToAttack && LookAtEnemy())
         {
-            target.TakeDamage(damage);
-            StartCoroutine(Cooldown());
+            StartCoroutine(BeforeAttackCD());
             Debug.Log(target.GetHealth());
         }
     }
     private IEnumerator Cooldown()
     {
+        if (this.GetComponent<EnemyDistance>().GetDistance() <= attackRange)
+            target.TakeDamage(damage);
         isAbleToAttack = false;
         yield return new WaitForSeconds(attackCooldown);
         isAbleToAttack = true;
+    }
+    private IEnumerator BeforeAttackCD()
+    {
+        yield return new WaitForSeconds(beforeAttackTime);
+        StartCoroutine(Cooldown());
     }
     private bool LookAtEnemy()
     {
