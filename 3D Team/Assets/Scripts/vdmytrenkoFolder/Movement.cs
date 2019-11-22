@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     public float rotateSpeed;
     public bool firstPlayer;
     string horizontal, vertical, xbut, sbut, cbut, tbut;
+
+    private bool isLocked;
     void Start()
     {
         if (firstPlayer)
@@ -30,33 +32,45 @@ public class Movement : MonoBehaviour
             tbut = "Tbut2";
         }
         rigidBody = this.GetComponent<Rigidbody>();
+        isLocked = false;
     }
     
-    void LateUpdate()
+    void FixedUpdate()
     {
-        Vector3 movement = new Vector3(Input.GetAxis(horizontal), 0.0f, Input.GetAxis(vertical));
-        Move(movement);
-        Rotate(rotateSpeed, movement);
-        if (Input.GetButtonDown(xbut))
+        if (!isLocked)
         {
-            
+            Vector3 movement = new Vector3(Input.GetAxis(horizontal), 0.0f, Input.GetAxis(vertical));
+            Move(movement);
+            Rotate(rotateSpeed, movement);
+            if (Input.GetButtonDown(xbut))
+            {
+                
+            }
+            if (Input.GetButtonDown(sbut))
+            {
+                this.GetComponent<MeleeAttack>().DoMeeleAttack();
+            }
+            if (Input.GetButtonDown(cbut))
+            {
+                this.GetComponent<BearVerticalHit>().DoVerticalAttack();
+            }
+            if (Input.GetButtonDown(tbut))
+            {
+
+            }
         }
-        if (Input.GetButtonDown(sbut))
-        {
-            this.GetComponent<MeleeAttack>().DoMeeleAttack();
-        }
-        if (Input.GetButtonDown(cbut))
-        {
-            this.GetComponent<BearVerticalHit>().DoVerticalAttack();
-        }
-        if (Input.GetButtonDown(tbut))
-        {
-            Debug.Log("T");
-        }
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
+    }
+    public void Lock()
+    {
+        isLocked = true;
     }
     public void Move(Vector3 direction)
     {
-        //rigidBody.velocity = direction * speed;
         transform.position += direction * speed * Time.deltaTime;
     }
     public void Rotate(float speed, Vector3 movement)

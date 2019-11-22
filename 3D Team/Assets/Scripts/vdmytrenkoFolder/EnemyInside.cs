@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyInside : MonoBehaviour
 {
     private bool canBeAttacked;
+    public string tag;
     void Start()
     {
         canBeAttacked = false;
@@ -13,17 +14,18 @@ public class EnemyInside : MonoBehaviour
 
     void Update()
     {
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == tag)
+        {
             canBeAttacked = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == tag)
             canBeAttacked = false;
     }
 

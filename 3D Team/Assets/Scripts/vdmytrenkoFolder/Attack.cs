@@ -24,6 +24,7 @@ public class Attack : MonoBehaviour
         if (isAbleToAttack)
         {
             isAbleToAttack = false;
+            this.GetComponent<Movement>().Lock();
             StartCoroutine(BeforeAttackCD());
         }
     }
@@ -34,6 +35,7 @@ public class Attack : MonoBehaviour
             target.TakeDamage(damage);
             Debug.Log(target.GetHealth());
         }
+        this.GetComponent<Movement>().Unlock();
         yield return new WaitForSeconds(attackCooldown);
         isAbleToAttack = true;
     }
