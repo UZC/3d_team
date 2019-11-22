@@ -32,22 +32,22 @@ public class Movement : MonoBehaviour
         rigidBody = this.GetComponent<Rigidbody>();
     }
     
-    void FixedUpdate()
+    void LateUpdate()
     {
         Vector3 movement = new Vector3(Input.GetAxis(horizontal), 0.0f, Input.GetAxis(vertical));
         Move(movement);
         Rotate(rotateSpeed, movement);
         if (Input.GetButtonDown(xbut))
         {
-            Debug.Log(this.GetComponent<EnemyDistance>().GetDistance());
+            
         }
         if (Input.GetButtonDown(sbut))
         {
-            this.GetComponent<MeleeAttack>().DoAttack();
+            this.GetComponent<MeleeAttack>().DoMeeleAttack();
         }
         if (Input.GetButtonDown(cbut))
         {
-            Debug.Log("C");
+            this.GetComponent<BearVerticalHit>().DoVerticalAttack();
         }
         if (Input.GetButtonDown(tbut))
         {

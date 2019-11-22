@@ -60,8 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\vdmytrenkoFolder\Attack.cs" />
+    <Compile Include="Assets\Scripts\vdmytrenkoFolder\BearVerticalHit.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\vdmytrenkoFolder\EnemyDistance.cs" />
+    <Compile Include="Assets\Scripts\vdmytrenkoFolder\EnemyInside.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\HealthBars.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\Movement.cs" />
