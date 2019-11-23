@@ -44,7 +44,7 @@ public class Movement : MonoBehaviour
             Rotate(rotateSpeed, movement);
             if (Input.GetButtonDown(xbut))
             {
-                
+                this.GetComponent<BearUltimate>().BearUlti();
             }
             if (Input.GetButtonDown(sbut))
             {

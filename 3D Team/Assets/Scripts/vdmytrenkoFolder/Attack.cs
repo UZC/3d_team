@@ -45,4 +45,16 @@ public class Attack : MonoBehaviour
         StartCoroutine(Cooldown());
     }
 
+    public IEnumerator SlowEnemy(float slowTime, float slowValue)
+    {
+        float startMovSpeed = target.GetComponent<Movement>().speed;
+        float startRotSpeed = target.GetComponent<Movement>().rotateSpeed;
+
+        target.GetComponent<Movement>().speed *= (1 - slowValue);
+        target.GetComponent<Movement>().rotateSpeed *= (1 - slowValue);
+
+        yield return new WaitForSeconds(slowTime);
+        target.GetComponent<Movement>().speed = startMovSpeed;
+        target.GetComponent<Movement>().rotateSpeed = startRotSpeed;
+    }
 }

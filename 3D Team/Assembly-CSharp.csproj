@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\Attack.cs" />
+    <Compile Include="Assets\Scripts\vdmytrenkoFolder\BearUltimate.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\BearVerticalHit.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\EnemyInside.cs" />
