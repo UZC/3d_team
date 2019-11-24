@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 { 
-    //public Image healthBar;
     public int currentHealth;
     private bool isDead;
         
@@ -15,10 +14,6 @@ public class Health : MonoBehaviour
         currentHealth = 100;
     }
 
-    void Update()
-    {
-        //healthBar.fillAmount = (float)currentHealth/100;
-    }
 
     private void OnDeath()
     {
