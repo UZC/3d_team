@@ -8,7 +8,7 @@ public class BearUltimate : MonoBehaviour
     [SerializeField]
     protected Health target;
     public float attackCooldown;
-
+    public GameObject particle;
     public float beforeAttackTime;
     public float slowDuration;
     public float slowValue;
@@ -16,7 +16,7 @@ public class BearUltimate : MonoBehaviour
     void Start()
     {
         ob = this.gameObject.AddComponent<Attack>();
-        ob.InitAttack(damage, target, attackCooldown, beforeAttackTime);
+        ob.InitAttack(damage, target, attackCooldown, beforeAttackTime, particle);
     }
 
     public void BearUlti()

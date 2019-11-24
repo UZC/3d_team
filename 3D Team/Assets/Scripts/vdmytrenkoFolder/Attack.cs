@@ -8,21 +8,24 @@ public class Attack : MonoBehaviour
     Health target;
     float attackCooldown;
     bool isAbleToAttack;
-
+    GameObject particle;
     float beforeAttackTime;
 
-    public void InitAttack(int dm, Health tr, float at_cd, float bf_at_tm)
+    public void InitAttack(int dm, Health tr, float at_cd, float bf_at_tm, GameObject particle)
     {
         isAbleToAttack = true;
         this.damage = dm;
         this.target = tr;
         this.attackCooldown = at_cd;
         this.beforeAttackTime = bf_at_tm;
+        this.particle = particle;
+        particle.gameObject.SetActive(false);
     }
     public void DoAttack()
     {
         if (isAbleToAttack)
         {
+            particle.gameObject.SetActive(true);
             isAbleToAttack = false;
             this.GetComponent<Movement>().Lock();
             StartCoroutine(BeforeAttackCD());
@@ -43,6 +46,7 @@ public class Attack : MonoBehaviour
     {
         yield return new WaitForSeconds(beforeAttackTime);
         StartCoroutine(Cooldown());
+        particle.gameObject.SetActive(false);
     }
 
     public IEnumerator SlowEnemy(float slowTime, float slowValue)
