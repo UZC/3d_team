@@ -5322,6 +5322,7 @@ MonoBehaviour:
   speed: 2.5
   rotateSpeed: 10
   firstPlayer: 0
+  maxDistance: 11
 --- !u!114 &508318003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5691,6 +5692,7 @@ MonoBehaviour:
   speed: 2.5
   rotateSpeed: 10
   firstPlayer: 1
+  maxDistance: 11
 --- !u!54 &738008159
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11568,7 +11570,7 @@ Camera:
     height: 1080
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 28
   orthographic: 0
   orthographic size: 11.59
   m_Depth: -1
@@ -11594,7 +11596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341406291}
   m_LocalRotation: {x: 0.43797994, y: -0, z: -0, w: 0.8989848}
-  m_LocalPosition: {x: 0, y: 15, z: -10}
+  m_LocalPosition: {x: 0, y: 25, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -11616,10 +11618,11 @@ MonoBehaviour:
   player2: {fileID: 508317999}
   maxDistance: 15
   minDistance: 5
-  maxY: 25
-  minY: 8
-  startForRotateY: 14
-  maxAngle: 31
+  maxY: 28
+  minY: 15
+  startForRotateY: 24
+  maxAngle: 35
+  zCoord: 19
 --- !u!1 &1341832058
 GameObject:
   m_ObjectHideFlags: 0

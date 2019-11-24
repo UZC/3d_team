@@ -14,6 +14,7 @@ public class CameraMovement : MonoBehaviour
     public float maxY, minY;
     public float startForRotateY;
     public float maxAngle;
+    public float zCoord;
 
     private Vector3 startCameraAngle;
     void Start()
@@ -41,7 +42,7 @@ public class CameraMovement : MonoBehaviour
     private float MoveCameraOnZ()
     {
         float centrZ = (player1.transform.position.z + player2.transform.position.z) / 2;
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, centrZ - 10);
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, centrZ - zCoord);
         return centrZ;
     }
     private void MoveCameraOnY()

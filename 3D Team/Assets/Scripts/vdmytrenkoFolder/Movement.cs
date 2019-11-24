@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
     string horizontal, vertical, xbut, sbut, cbut, tbut;
 
     private bool isLocked;
+
+    public float maxDistance;
     void Start()
     {
         if (firstPlayer)
@@ -71,7 +73,9 @@ public class Movement : MonoBehaviour
     }
     public void Move(Vector3 direction)
     {
-        transform.position += direction * speed * Time.deltaTime;
+        Vector3 centr = new Vector3(0, this.transform.position.y, 0);
+        if(Vector3.Distance(centr, transform.position + direction * speed * Time.deltaTime) <= maxDistance)
+            transform.position += direction * speed * Time.deltaTime;
     }
     public void Rotate(float speed, Vector3 movement)
     {
