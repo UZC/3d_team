@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\apustovyi\AddForce.cs" />
     <Compile Include="Assets\Scripts\apustovyi\DashAbility.cs" />
     <Compile Include="Assets\Scripts\apustovyi\TransformPos.cs" />
+    <Compile Include="Assets\Scripts\SkillCooldown.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\Attack.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\BearUltimate.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\BearVerticalHit.cs" />
