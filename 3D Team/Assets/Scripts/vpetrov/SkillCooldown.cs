@@ -5,64 +5,36 @@ using UnityEngine.UI;
 
 public class SkillCooldown : MonoBehaviour
 {
-    public List<Skill> skills;
-    void FixedUpdate()
+    float cooldown;
+    float currentCooldown;
+    public Image cooldownIcon;
+    public Text cooldownText;
+    bool flagStart;
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (flagStart)
         {
-            if(skills[0].currentCooldown>=skills[0].cooldown)
+            if (currentCooldown >= cooldown)
             {
-                skills[0].currentCooldown = 0;
-            }        
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (skills[1].currentCooldown >= skills[1].cooldown)
-            {
-                skills[1].currentCooldown = 0;
+                cooldownIcon.fillAmount = 0;
+                cooldownText.text = cooldown.ToString();
+                flagStart = false;
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (skills[2].currentCooldown >= skills[2].cooldown)
+            if (currentCooldown < cooldown)
             {
-                skills[2].currentCooldown = 0;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            if (skills[3].currentCooldown >= skills[3].cooldown)
-            {
-                skills[3].currentCooldown = 0;
+                currentCooldown += Time.deltaTime;
+                cooldownIcon.fillAmount = currentCooldown / cooldown;
+                cooldownText.text = (cooldown - currentCooldown).ToString();
+
             }
         }
     }
-    void Update()
-    { 
-        foreach(Skill s in skills)
-        {
-            if (s.currentCooldown >= s.cooldown)
-            {
-                s.cooldownIcon.fillAmount = 0;
-                s.cooldownText.text = s.cooldown.ToString();
-            }
-            if (s.currentCooldown < s.cooldown)
-            {
-                s.currentCooldown += Time.deltaTime;
-                s.cooldownIcon.fillAmount = s.currentCooldown / s.cooldown;
-                s.cooldownText.text = (s.cooldown-s.currentCooldown).ToString();
-            }
-            
-        }
+    public void StartCooldown(float cooldown)
+    {
+        cooldown = this.cooldown;
+        flagStart = true;
     }
 }
 
-[System.Serializable]
-public class Skill
-{
-    public float cooldown;
-    public Image cooldownIcon;
-    public Text cooldownText;
-    [HideInInspector]
-    public float currentCooldown;
-}
+
+
