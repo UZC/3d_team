@@ -5684,7 +5684,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738008154}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 339447e1991e00545a24382729096a04, type: 3}
   m_Name: 
@@ -5754,8 +5754,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8c3b327160ac5409ab14c012457d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashDistance: 0.5
-  thePlayer: {fileID: 738008154}
+  dashDistance: 5
+  cooldownTime: 2
 --- !u!4 &738008163 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3541823487946732582, guid: fe2ca00edc5adc14193b2dc313f0f789,
