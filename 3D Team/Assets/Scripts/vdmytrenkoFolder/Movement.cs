@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour
             }
             if (Input.GetButtonDown(tbut))
             {
-
+                this.GetComponent<Charge>().ChargeSkill();
             }
         }
     }
