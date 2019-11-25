@@ -5,7 +5,7 @@ using UnityEngine;
 public class TransformPos : MonoBehaviour
 {
     //movement speed in units per second
-    private float movementSpeed = 5f;
+    [SerializeField] private float movementSpeed = 5f;
 
     void Update()
     {

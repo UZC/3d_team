@@ -6,13 +6,10 @@ public class DashAbility : MonoBehaviour
 {
 
     [SerializeField] private float dashDistance;
-    private Vector3 lastMoveDir;
-    public Transform teleportTarget;
+    private Vector3 TeleportPlace;
+    //public Transform teleportTarget;
     public GameObject thePlayer;
 
-    private void Awake()
-    {
-    }
 
     // Update is called once per frame
     public void Update()
@@ -22,14 +19,30 @@ public class DashAbility : MonoBehaviour
     }
     public void Dash()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetAxis("Horizontal") > 0 && (Input.GetKey(KeyCode.JoystickButton3)))
         {
-            thePlayer.transform.position = teleportTarget.transform.position;
-            //thePlayer.transform.position = new Vector3(1 * dashDistance , 0, 0);
+            TeleportPlace = new Vector3(thePlayer.transform.position.x + dashDistance, thePlayer.transform.position.y, thePlayer.transform.position.z);
+            transform.position = TeleportPlace;
         }
-    }
+        if (Input.GetAxis("Horizontal") < 0 && (Input.GetKey(KeyCode.JoystickButton3)))
+        {
+            TeleportPlace = new Vector3(thePlayer.transform.position.x - dashDistance, thePlayer.transform.position.y, thePlayer.transform.position.z);
+            transform.position = TeleportPlace;
+        }
+        if (Input.GetAxis("Vertical") > 0 && (Input.GetKey(KeyCode.JoystickButton3)))
+        {
+            TeleportPlace = new Vector3(thePlayer.transform.position.x, thePlayer.transform.position.y, thePlayer.transform.position.z + dashDistance);
+            transform.position = TeleportPlace;
+        }
+        if (Input.GetAxis("Vertical") < 0 && (Input.GetKey(KeyCode.JoystickButton3)))
+        {
+            TeleportPlace = new Vector3(thePlayer.transform.position.x, thePlayer.transform.position.y, thePlayer.transform.position.z - dashDistance);
+            transform.position = TeleportPlace;
+        }
 
-    /*  private void HandleMovement()
+    }
+}
+    /*  private void HandleMovement()- Говно собачье
       {
           float speed = 50f;
           float moveX = 0f;
@@ -103,4 +116,4 @@ public class DashAbility : MonoBehaviour
       }
       */
 
-}
+
