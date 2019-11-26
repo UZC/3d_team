@@ -6,15 +6,11 @@ public class Pause : MonoBehaviour
 {
     public GameObject victoryScreen;
 
-    void Update()
-    {
-        stopAndReload();
-    }
 
-    public void stopAndReload()
+
+    public void StopAndReload()
     {
-        if (Input.GetKeyDown("escape"))
-        {
+     
             if (Time.timeScale == 1)
             {
                 victoryScreen.SetActive(true);
@@ -26,7 +22,7 @@ public class Pause : MonoBehaviour
                 Time.timeScale = 1;
             }
 
-        }
+
         
     }
     public void RestartGame()

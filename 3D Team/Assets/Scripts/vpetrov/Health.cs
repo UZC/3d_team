@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
 { 
     public int currentHealth;
     private bool isDead;
+    [SerializeField]
+    Pause pauseMenu;
         
     void Start()
     {
@@ -21,7 +23,12 @@ public class Health : MonoBehaviour
         {
             currentHealth = 0;
             isDead = true;
+            Invoke("PlaceHolder", 0.1f);
         }
+    }
+    private void PlaceHolder()
+    {
+        pauseMenu.StopAndReload();
     }
     public void TakeDamage(int damage)
     {
