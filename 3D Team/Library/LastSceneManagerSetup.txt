@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/vdmytrenko.unity
+- path: Assets/apustovyi.unity
   isLoaded: 1
   isActive: 1
