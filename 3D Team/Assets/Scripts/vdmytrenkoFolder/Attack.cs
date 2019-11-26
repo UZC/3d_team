@@ -11,6 +11,7 @@ public class Attack : MonoBehaviour
     GameObject particle;
     float beforeAttackTime;
     SkillCooldown cooldown;
+    bool isAbleToSLow;
 
     public void InitAttack(int dm, Health tr, float at_cd, float bf_at_tm, GameObject particle, SkillCooldown cooldown)
     {
@@ -43,16 +44,25 @@ public class Attack : MonoBehaviour
             StartCoroutine(BeforeAttackCD());
         }
     }
+    public void DoSlow(float a, float b)
+    {
+        if (isAbleToSLow)
+        {
+            isAbleToSLow = false;
+            StartCoroutine(beforeSlowCD(a, b));
+        }
+    }
     protected IEnumerator Cooldown()
     {
         if (this.transform.GetChild(0).GetComponent<EnemyInside>().CanBeAttacked())
         {
             target.TakeDamage(damage);
-            Debug.Log(target.GetHealth());
+            //Debug.Log(target.GetHealth());
         }
         this.GetComponent<Movement>().Unlock();
         yield return new WaitForSeconds(attackCooldown);
         isAbleToAttack = true;
+        isAbleToSLow = true;
     }
     protected IEnumerator BeforeAttackCD()
     {
@@ -65,14 +75,22 @@ public class Attack : MonoBehaviour
 
     public IEnumerator SlowEnemy(float slowTime, float slowValue)
     {
-        float startMovSpeed = target.GetComponent<Movement>().speed;
-        float startRotSpeed = target.GetComponent<Movement>().rotateSpeed;
+        if (this.transform.GetChild(0).GetComponent<EnemyInside>().CanBeAttacked())
+        {
+            float startMovSpeed = target.GetComponent<Movement>().speed;
+            float startRotSpeed = target.GetComponent<Movement>().rotateSpeed;
 
-        target.GetComponent<Movement>().speed *= (1 - slowValue);
-        target.GetComponent<Movement>().rotateSpeed *= (1 - slowValue);
+            target.GetComponent<Movement>().speed *= (1 - slowValue);
+            target.GetComponent<Movement>().rotateSpeed *= (1 - slowValue);
 
-        yield return new WaitForSeconds(slowTime);
-        target.GetComponent<Movement>().speed = startMovSpeed;
-        target.GetComponent<Movement>().rotateSpeed = startRotSpeed;
+            yield return new WaitForSeconds(slowTime);
+            target.GetComponent<Movement>().speed = startMovSpeed;
+            target.GetComponent<Movement>().rotateSpeed = startRotSpeed;
+        }
+    }
+    public IEnumerator beforeSlowCD(float slowTime, float slowValue)
+    {
+        yield return new WaitForSeconds(beforeAttackTime);
+        StartCoroutine(SlowEnemy(slowTime, slowValue));
     }
 }

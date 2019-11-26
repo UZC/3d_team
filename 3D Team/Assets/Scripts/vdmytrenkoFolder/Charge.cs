@@ -11,28 +11,29 @@ public class Charge : MonoBehaviour
     public float coolDown;
     public float minDistance;
     public float stopDistance;
-    //public SkillCooldown sc;
+    public SkillCooldown sc;
 
     bool isAbleToCharge;
     bool isCharging;
+    float startY;
     void Start()
     {
         isAbleToCharge = true;
         isCharging = false;
+        startY = this.transform.position.y;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isCharging)
         {
             if (Vector3.Distance(this.transform.position, enemy.position) >= stopDistance)
             {
                 this.transform.position += transform.forward * speed * Time.deltaTime;
-                Debug.Log("doing");
+                this.transform.position = new Vector3(this.transform.position.x, startY, this.transform.position.z);
             }
             else
             {
-                Debug.Log("done");
                 isCharging = false;
             }
         }
@@ -42,10 +43,17 @@ public class Charge : MonoBehaviour
     {
         if (Vector3.Distance(this.transform.position, enemy.position) <= minDistance && isAbleToCharge)
         {
-            Debug.Log("here");
             this.transform.LookAt(new Vector3(enemy.position.x, this.transform.position.y, enemy.position.z));
             isCharging = true;
-            //isAbleToCharge = false;
+            isAbleToCharge = false;
+            sc.StartCooldown(coolDown);
+            StartCoroutine(CoolDown());
         }
+    }
+
+    public IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(coolDown);
+        isAbleToCharge = true;
     }
 }

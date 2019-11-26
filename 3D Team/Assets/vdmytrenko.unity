@@ -5704,7 +5704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashDistance: 2
-  cooldownTime: 3
+  cooldownTime: 5
 --- !u!4 &508318006
 Transform:
   m_ObjectHideFlags: 0
@@ -6118,9 +6118,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 508318006}
   speed: 8
-  coolDown: 0
+  coolDown: 6
   minDistance: 20
   stopDistance: 2
+  sc: {fileID: 973294082}
 --- !u!1 &812264697
 GameObject:
   m_ObjectHideFlags: 0
@@ -6662,8 +6663,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730ee4f9f75e43479cd7e763e79378a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownIcon: {fileID: 0}
-  cooldownText: {fileID: 0}
+  cooldownIcon: {fileID: 812264699}
+  cooldownText: {fileID: 1294959127}
 --- !u!1 &992396486
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,8 @@ public class BearUltimate : MonoBehaviour
     public void BearUlti()
     {
         ob.DoAttack();
-        StartCoroutine(ob.SlowEnemy(slowDuration, slowValue));
+        //StartCoroutine(ob.SlowEnemy(slowDuration, slowValue));
+        ob.DoSlow(slowDuration, slowValue);
     }
     
 }
