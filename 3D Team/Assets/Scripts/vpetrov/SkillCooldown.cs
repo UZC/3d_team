@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class SkillCooldown : MonoBehaviour
 {
     float cooldown;
-    float currentCooldown;
+    float currentCooldown = 0;
     public Image cooldownIcon;
     public Text cooldownText;
-    bool flagStart;
+    bool flagStart = false;
     void Update()
     {
         if (flagStart)
@@ -19,6 +19,7 @@ public class SkillCooldown : MonoBehaviour
                 cooldownIcon.fillAmount = 0;
                 cooldownText.text = cooldown.ToString();
                 flagStart = false;
+                currentCooldown = 0;
             }
             if (currentCooldown < cooldown)
             {
@@ -31,7 +32,7 @@ public class SkillCooldown : MonoBehaviour
     }
     public void StartCooldown(float cooldown)
     {
-        cooldown = this.cooldown;
+        this.cooldown = cooldown;
         flagStart = true;
     }
 }

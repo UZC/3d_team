@@ -11,6 +11,7 @@ public class Charge : MonoBehaviour
     public float coolDown;
     public float minDistance;
     public float stopDistance;
+    //public SkillCooldown sc;
 
     bool isAbleToCharge;
     bool isCharging;

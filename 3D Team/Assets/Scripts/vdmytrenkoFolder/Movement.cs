@@ -58,7 +58,10 @@ public class Movement : MonoBehaviour
             }
             if (Input.GetButtonDown(tbut))
             {
-                this.GetComponent<Charge>().ChargeSkill();
+                if (firstPlayer)
+                    this.GetComponent<Charge>().ChargeSkill();
+                else
+                 this.GetComponent<DashAbility>().Dash(horizontal, vertical);
             }
         }
     }

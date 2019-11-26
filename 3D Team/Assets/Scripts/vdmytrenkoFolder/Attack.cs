@@ -10,7 +10,19 @@ public class Attack : MonoBehaviour
     bool isAbleToAttack;
     GameObject particle;
     float beforeAttackTime;
+    SkillCooldown cooldown;
 
+    public void InitAttack(int dm, Health tr, float at_cd, float bf_at_tm, GameObject particle, SkillCooldown cooldown)
+    {
+        isAbleToAttack = true;
+        this.damage = dm;
+        this.target = tr;
+        this.attackCooldown = at_cd;
+        this.beforeAttackTime = bf_at_tm;
+        this.particle = particle;
+        particle.gameObject.SetActive(false);
+        this.cooldown = cooldown;
+    }
     public void InitAttack(int dm, Health tr, float at_cd, float bf_at_tm, GameObject particle)
     {
         isAbleToAttack = true;
@@ -46,6 +58,8 @@ public class Attack : MonoBehaviour
     {
         yield return new WaitForSeconds(beforeAttackTime);
         StartCoroutine(Cooldown());
+        if(cooldown != null)
+            cooldown.StartCooldown(attackCooldown);
         particle.gameObject.SetActive(false);
     }
 
