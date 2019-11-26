@@ -8,7 +8,6 @@ public class SkillCooldown : MonoBehaviour
     float cooldown;
     float currentCooldown = 0;
     public Image cooldownIcon;
-    public Text cooldownText;
     bool flagStart = false;
     void Update()
     {
@@ -17,7 +16,6 @@ public class SkillCooldown : MonoBehaviour
             if (currentCooldown >= cooldown)
             {
                 cooldownIcon.fillAmount = 0;
-                cooldownText.text = cooldown.ToString();
                 flagStart = false;
                 currentCooldown = 0;
             }
@@ -25,8 +23,6 @@ public class SkillCooldown : MonoBehaviour
             {
                 currentCooldown += Time.deltaTime;
                 cooldownIcon.fillAmount = currentCooldown / cooldown;
-                cooldownText.text = (cooldown - currentCooldown).ToString();
-
             }
         }
     }
