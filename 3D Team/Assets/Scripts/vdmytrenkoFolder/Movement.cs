@@ -44,24 +44,37 @@ public class Movement : MonoBehaviour
             Vector3 movement = new Vector3(Input.GetAxis(horizontal), 0.0f, Input.GetAxis(vertical));
             Move(movement);
             Rotate(rotateSpeed, movement);
+            //if(Input.GetAxis(horizontal) <= 0.05f || Input.GetAxis(vertical) <= 0.05f)
+            //{
+              //  this.GetComponent<AudioClips>().PlayBearStep();
+            //}
             if (Input.GetButtonDown(xbut))
             {
                 this.GetComponent<BearUltimate>().BearUlti();
+                this.GetComponent<AudioClips>().PlayBearUlti();
             }
             if (Input.GetButtonDown(sbut))
             {
                 this.GetComponent<MeleeAttack>().DoMeeleAttack();
+                this.GetComponent<AudioClips>().PlayBearHit();
             }
             if (Input.GetButtonDown(cbut))
             {
                 this.GetComponent<BearVerticalHit>().DoVerticalAttack();
+                this.GetComponent<AudioClips>().PlayBearHit();
             }
             if (Input.GetButtonDown(tbut))
             {
                 if (firstPlayer)
+                {
                     this.GetComponent<Charge>().ChargeSkill();
+                    this.GetComponent<AudioClips>().PlayCharge();
+                }
                 else
-                 this.GetComponent<DashAbility>().Dash(horizontal, vertical);
+                {
+                    this.GetComponent<DashAbility>().Dash(horizontal, vertical);
+                    this.GetComponent<AudioClips>().PlayCharge();
+                }
             }
         }
     }

@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\apustovyi\Pause.cs" />
     <Compile Include="Assets\Scripts\apustovyi\TransformPos.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\Attack.cs" />
+    <Compile Include="Assets\Scripts\vdmytrenkoFolder\AudioClips.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\BearUltimate.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\BearVerticalHit.cs" />
     <Compile Include="Assets\Scripts\vdmytrenkoFolder\CameraMovement.cs" />

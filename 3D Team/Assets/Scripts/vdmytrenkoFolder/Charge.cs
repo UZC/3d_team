@@ -30,11 +30,13 @@ public class Charge : MonoBehaviour
             if (Vector3.Distance(this.transform.position, enemy.position) >= stopDistance)
             {
                 this.transform.position += transform.forward * speed * Time.deltaTime;
+                this.transform.LookAt(new Vector3(enemy.position.x, this.transform.position.y, enemy.position.z));
                 this.transform.position = new Vector3(this.transform.position.x, startY, this.transform.position.z);
             }
             else
             {
                 isCharging = false;
+                this.GetComponent<Movement>().Unlock();
             }
         }
     }
@@ -45,6 +47,7 @@ public class Charge : MonoBehaviour
         {
             this.transform.LookAt(new Vector3(enemy.position.x, this.transform.position.y, enemy.position.z));
             isCharging = true;
+            this.GetComponent<Movement>().Lock();
             isAbleToCharge = false;
             sc.StartCooldown(coolDown);
             StartCoroutine(CoolDown());
