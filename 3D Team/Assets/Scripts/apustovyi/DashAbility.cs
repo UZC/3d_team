@@ -6,22 +6,23 @@ public class DashAbility : MonoBehaviour
 {
 
     [SerializeField] private float dashDistance;
-    [SerializeField] private float cooldownTime = 2;
+    [SerializeField] private float cooldownTime;
     private Vector3 teleportPlace;
     private string horizontal, vertical;
     private float nextTeleportTime = 0;
 
-
+    [SerializeField]
+    SkillCooldown sc;
     
     public void Update() // Update is called once per frame
     {
-        //Dash("Horizontal", "Vertical");
+
     }
     public void Dash(string horizontal, string vertical)
     {
        if (Time.time > nextTeleportTime)
         {
-
+            sc.StartCooldown(cooldownTime);
         if (Input.GetAxis(horizontal) > 0)
         {
             teleportPlace = new Vector3(this.transform.position.x + dashDistance, this.transform.position.y, this.transform.position.z);
