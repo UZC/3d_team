@@ -8,7 +8,7 @@ public class CameraMovement : MonoBehaviour
     private GameObject player1;
     [SerializeField]
     private GameObject player2;
-    
+
 
     public float maxDistance, minDistance;
     public float maxY, minY;
@@ -17,19 +17,23 @@ public class CameraMovement : MonoBehaviour
     public float zCoord;
 
     private Vector3 startCameraAngle;
+    public static bool isReady = false;
     void Start()
     {
         startCameraAngle = this.transform.eulerAngles;
     }
 
-    
+
     void FixedUpdate()
     {
-        float z = MoveCameraOnZ();
-        float x = MoveCameraOnX();
-        MoveCameraOnY();
-        DistanceBetweenCenterAndCamera(x, z);
-        RotateCamera();
+        if (isReady)
+        {
+            float z = MoveCameraOnZ();
+            float x = MoveCameraOnX();
+            MoveCameraOnY();
+            DistanceBetweenCenterAndCamera(x, z);
+            RotateCamera();
+        }
     }
 
     private float MoveCameraOnX()

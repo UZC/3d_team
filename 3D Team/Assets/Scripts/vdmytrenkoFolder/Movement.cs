@@ -13,8 +13,11 @@ public class Movement : MonoBehaviour
     private bool isLocked;
 
     public float maxDistance;
+
+    BearAnimatorController bc;
     void Start()
     {
+        bc = this.GetComponent<BearAnimatorController>();
         if (firstPlayer)
         {
             horizontal = "JoystickHorizontal1";
@@ -44,10 +47,13 @@ public class Movement : MonoBehaviour
             Vector3 movement = new Vector3(Input.GetAxis(horizontal), 0.0f, Input.GetAxis(vertical));
             Move(movement);
             Rotate(rotateSpeed, movement);
-            //if(Input.GetAxis(horizontal) <= 0.05f || Input.GetAxis(vertical) <= 0.05f)
-            //{
-              //  this.GetComponent<AudioClips>().PlayBearStep();
-            //}
+            //Debug.Log(Input.GetAxis(horizontal) + " " + Input.GetAxis(vertical));
+            if ((Input.GetAxis(horizontal) != 0 || Input.GetAxis(vertical) != 0) && !isLocked)
+            {
+                bc.Running();
+            }
+            else
+                bc.IsNotRunning();
             if (Input.GetButtonDown(xbut))
             {
                 this.GetComponent<BearUltimate>().BearUlti();
@@ -55,11 +61,13 @@ public class Movement : MonoBehaviour
             }
             if (Input.GetButtonDown(sbut))
             {
+                bc.Attack();
                 this.GetComponent<MeleeAttack>().DoMeeleAttack();
                 this.GetComponent<AudioClips>().PlayBearHit();
             }
             if (Input.GetButtonDown(cbut))
             {
+                bc.RoundAttack();
                 this.GetComponent<BearVerticalHit>().DoVerticalAttack();
                 this.GetComponent<AudioClips>().PlayBearHit();
             }
