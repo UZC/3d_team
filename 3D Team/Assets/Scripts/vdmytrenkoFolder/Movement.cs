@@ -56,6 +56,7 @@ public class Movement : MonoBehaviour
                 bc.IsNotRunning();
             if (Input.GetButtonDown(xbut))
             {
+                bc.RoundAttack();
                 this.GetComponent<BearUltimate>().BearUlti();
                 this.GetComponent<AudioClips>().PlayBearUlti();
             }
